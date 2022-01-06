@@ -1,4 +1,8 @@
+#
 # ELBO Sample Config File for MNIST Classifier Task
+#
+# All paths are relative to where the `elbo.yaml` file is placed
+
 name: "Train MNIST Classifier"
 
 # The GPU class to use - Economy, MidRange, HighEnd
@@ -11,9 +15,9 @@ setup: setup.sh
 requirements: requirements.txt
 
 # The main entry point in the task. Once the script exits or terminates, the task is considered complete.
-run: mnist_classifier/main.py
+run: main.py
 
-# The task directory, relative to this file. This directory will be tarballed and sent to ELBO task executor for
+# The task directory, relative to this file. This directory will be tar-balled and sent to ELBO task executor for
 # execution
 task_dir: .
 
@@ -23,4 +27,3 @@ artifacts: ~/artifacts
 
 # Prompt before provisioning hardware for running the task. The prompt will include the pricing of the hardware.
 prompt_before_running: False
-
