@@ -46,6 +46,7 @@ class MNISTClassifier(ElboModel, nn.Module):
 
 def train(model, train_dataset, batch_size=2000, lr=0.001):
     device = get_device()
+    print(f"Training running on device - {device}")
     model.to(device)
 
     model.train()
