@@ -1,6 +1,4 @@
--i https://test.pypi.org/simple/
 pandas
-elbo
 numpy
 torch
 pytorch_lightning

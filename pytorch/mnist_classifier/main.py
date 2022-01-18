@@ -89,7 +89,7 @@ if __name__ == '__main__':
     _train_data = datasets.MNIST("data", train=True, transform=transforms.ToTensor(), download=True)
     _test_data = datasets.MNIST("data", train=False, transform=transforms.ToTensor(), download=True)
     _model = MNISTClassifier()
-    _num_epochs = 10
+    _num_epochs = 100
 
     for _epoch in elbo.elbo.ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=1):
         _loss = train(_model, _train_data)
