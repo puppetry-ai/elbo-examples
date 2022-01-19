@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     wandb.watch(_model)
 
-    for _epoch in elbo.elbo.ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=1):
+    for _epoch in elbo.elbo.ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=10):
         _loss = train(_model, _train_data, _batch_size, _lr)
         wandb.log({"loss": _loss})
         print(f"Epoch = {_epoch} Loss = {_loss}")
