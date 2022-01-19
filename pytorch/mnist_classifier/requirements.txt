@@ -4,3 +4,4 @@ torch
 pytorch_lightning
 tqdm
 torchvision
+wandb

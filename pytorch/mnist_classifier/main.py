@@ -8,6 +8,10 @@ import os
 import elbo.elbo
 from elbo.elbo import ElboModel
 
+import wandb
+
+wandb.init(project="elbo-mnist-classifier", entity="elbo")
+
 
 def get_device():
     return 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -44,7 +48,7 @@ class MNISTClassifier(ElboModel, nn.Module):
         return out
 
 
-def train(model, train_dataset, batch_size=2000, lr=0.001):
+def train(model, train_dataset, batch_size=200, lr=0.001):
     device = get_device()
     print(f"Training running on device - {device}")
     model.to(device)
@@ -81,6 +85,7 @@ def test(model, test_dataset):
             loss += F.nll_loss(y_hat, y, reduction='sum').detach().cpu().numpy()
 
         loss = loss / len(test_dataset)
+        wandb.log({"test_loss": loss})
         print(f"Average Test Loss = {loss}")
 
 
@@ -88,11 +93,23 @@ if __name__ == '__main__':
     print(f"Training MNIST classifier")
     _train_data = datasets.MNIST("data", train=True, transform=transforms.ToTensor(), download=True)
     _test_data = datasets.MNIST("data", train=False, transform=transforms.ToTensor(), download=True)
+
     _model = MNISTClassifier()
     _num_epochs = 100
+    _batch_size = 2000
+    _lr = 0.01
+
+    wandb.config = {
+        "learning_rate": _lr,
+        "epochs": _num_epochs,
+        "batch_size": _batch_size
+    }
+
+    wandb.watch(_model)
 
     for _epoch in elbo.elbo.ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=1):
-        _loss = train(_model, _train_data)
+        _loss = train(_model, _train_data, _batch_size, _lr)
+        wandb.log({"loss": _loss})
         print(f"Epoch = {_epoch} Loss = {_loss}")
 
     test(_model, _test_data)
