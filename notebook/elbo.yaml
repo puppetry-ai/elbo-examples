@@ -1,14 +1,14 @@
 #
-# ELBO Sample Config File for MNIST Classifier Task
+# ELBO Sample Config File for Starting a Jupyter Notebook
 #
 # All paths are relative to where the `elbo.yaml` file is placed
 
-name: "Train MNIST Classifier"
+name: "Start a jupyter notebook"
 
 # The GPU class to use - Economy, MidRange, HighEnd
 gpu_class: Economy
 
-# The script to run for setting up the environment. This can be installing packages on Ubuntu or 
+# The script to run for setting up the environment. This can be installing packages on Ubuntu or
 setup: setup.sh
 
 # The PIP requirements file. ELBO will install the requirements specified in this file before launching the task.
@@ -21,9 +21,12 @@ run: lab.py
 # execution
 task_dir: .
 
-# Artifacts directory. This is the directory that will be copied over as output. All model related files - 
-# checkpoints, generated samples, evaluation results etc. should be placed in this directory. 
+# Artifacts directory. This is the directory that will be copied over as output. All model related files -
+# checkpoints, generated samples, evaluation results etc. should be placed in this directory.
 artifacts: ~/artifacts
 
 # Prompt before provisioning hardware for running the task. The prompt will include the pricing of the hardware.
 prompt_before_running: False
+
+# The list of ports to open
+open_ports: [8080]

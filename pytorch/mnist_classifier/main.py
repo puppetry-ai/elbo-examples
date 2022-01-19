@@ -10,8 +10,8 @@ from elbo.elbo import ElboModel
 
 import wandb
 
+wandb.login(key='554f1579018d2fa355625a4c811986e7bc959059')
 wandb.init(project="elbo-mnist-classifier", entity="elbo")
-wandb.login(key=['554f1579018d2fa355625a4c811986e7bc959059'])
 
 
 def get_device():
