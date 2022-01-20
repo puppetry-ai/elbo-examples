@@ -30,3 +30,6 @@ prompt_before_running: False
 
 # The list of ports to open
 open_ports: [8080]
+
+# Keep the Node alive after task completion. This can be used for notebooks of SSH'ing into the task
+keep_alive: True

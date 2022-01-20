@@ -2,7 +2,6 @@
 Sample script to start a jupyter lab
 """
 import subprocess
-import sys
 
 TASK_COMMAND = "jupyter lab --allow-root --no-browser --port=8080 --ip=0.0.0.0"
 
@@ -19,8 +18,5 @@ if __name__ == "__main__":
         print(f"Is jupyter lab installed?")
         exit(-1)
 
-    for c in iter(lambda: process.stdout.read(1), b''):
-        sys.stdout.buffer.write(c)
-
-    if process:
-        process.wait()
+    for line in iter(lambda: process.stdout.readline(), b''):
+        print(line)
