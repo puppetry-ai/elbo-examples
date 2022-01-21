@@ -6,7 +6,7 @@
 name: "Train MNIST Classifier"
 
 # The GPU class to use - Economy, MidRange, HighEnd
-gpu_class: Economy
+gpu_class: MidRange
 
 # The script to run for setting up the environment. This can be installing packages on Ubuntu or 
 setup: setup.sh
@@ -26,4 +26,4 @@ task_dir: .
 artifacts: ~/artifacts
 
 # Prompt before provisioning hardware for running the task. The prompt will include the pricing of the hardware.
-prompt_before_running: False
+prompt_before_running: True

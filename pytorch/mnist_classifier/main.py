@@ -112,19 +112,20 @@ if __name__ == '__main__':
     }
 
     wandb.watch(_model)
+    _device = get_device()
+
+    y_test_true = _test_data.test_labels.to(_device)
+    y_train_true = _train_data.train_labels.to(_device)
 
     for _epoch in elbo.elbo.ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=10):
         _loss, y_train_pred = train(_model, _train_data, _batch_size, _lr)
 
         model_output = test(_model, _test_data)
+        with torch.no_grad():
+            y_test_pred = torch.argmax(torch.cat(model_output), dim=1)
+            y_train_pred = torch.argmax(torch.cat(y_train_pred), dim=1)
 
-        y_test_pred = torch.argmax(torch.cat(model_output), dim=1)
-        y_test_true = _test_data.test_labels
-
-        y_train_pred = torch.argmax(torch.cat(y_train_pred), dim=1)
-        y_train_true = _train_data.train_labels
-
-        test_accuracy = 100. * (torch.sum(y_test_pred == y_test_true) / (_test_data.data.size(0)))
-        train_accuracy = 100. * (torch.sum(y_train_pred == y_train_true) / (_train_data.data.size(0)))
-        wandb.log({"loss": _loss, "train_accuracy": train_accuracy, "test_accuracy": test_accuracy})
-        print(f"Train accuracy - {train_accuracy} % Test accuracy - {test_accuracy} % Loss = {_loss}")
+            test_accuracy = 100. * (torch.sum(y_test_pred == y_test_true).detach().cpu() / (_test_data.data.size(0)))
+            train_accuracy = 100. * (torch.sum(y_train_pred == y_train_true).detach().cpu() / (_train_data.data.size(0)))
+            wandb.log({"loss": _loss, "train_accuracy": train_accuracy, "test_accuracy": test_accuracy})
+            print(f"Train accuracy - {train_accuracy} % Test accuracy - {test_accuracy} % Loss = {_loss}")
