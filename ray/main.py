@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from ray.train import torch as raytorch
 from ray.train import Trainer
-
+import elbo.elboray
 num_samples = 20
 input_size = 10
 layer_size = 15
