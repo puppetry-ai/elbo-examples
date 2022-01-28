@@ -25,8 +25,5 @@ task_dir: .
 # checkpoints, generated samples, evaluation results etc. should be placed in this directory.
 artifacts: ~/artifacts
 
-# Prompt before provisioning hardware for running the task. The prompt will include the pricing of the hardware.
-prompt_before_running: False
-
 # Keep the Node alive after task completion. This can be used for notebooks of SSH'ing into the task
-keep_alive: True
+keep_alive: False

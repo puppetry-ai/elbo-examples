@@ -25,9 +25,6 @@ task_dir: .
 # checkpoints, generated samples, evaluation results etc. should be placed in this directory.
 artifacts: ~/artifacts
 
-# Prompt before provisioning hardware for running the task. The prompt will include the pricing of the hardware.
-prompt_before_running: False
-
 # The list of ports to open
 open_ports: [8080]
 

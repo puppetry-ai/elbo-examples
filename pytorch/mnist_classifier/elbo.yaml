@@ -24,6 +24,3 @@ task_dir: .
 # Artifacts directory. This is the directory that will be copied over as output. All model related files - 
 # checkpoints, generated samples, evaluation results etc. should be placed in this directory. 
 artifacts: ~/artifacts
-
-# Prompt before provisioning hardware for running the task. The prompt will include the pricing of the hardware.
-prompt_before_running: True
