@@ -6,7 +6,7 @@
 name: "Train MNIST Classifier"
 
 # The GPU class to use - Economy, MidRange, HighEnd
-gpu_class: MidRange
+gpu_class: All
 
 # The script to run for setting up the environment. This can be installing packages on Ubuntu or 
 setup: setup.sh
