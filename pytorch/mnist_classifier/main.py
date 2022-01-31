@@ -111,7 +111,6 @@ if __name__ == '__main__':
         "batch_size": _batch_size
     }
 
-    wandb.watch(_model)
     _device = get_device()
 
     y_test_true = _test_data.test_labels.to(_device)
