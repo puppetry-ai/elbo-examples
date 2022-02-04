@@ -15,7 +15,7 @@ setup: setup.sh
 requirements: requirements.txt
 
 # The main entry point in the task. Once the script exits or terminates, the task is considered complete.
-run: vae/models/simple_vae.py
+run: models/simple_vae.py
 
 # The task directory, relative to this file. This directory will be tar-balled and sent to ELBO task executor for
 # execution

@@ -8,11 +8,6 @@ import os
 import elbo.elbo
 from elbo.elbo import ElboModel
 
-import wandb
-
-wandb.login(key='554f1579018d2fa355625a4c811986e7bc959059')
-wandb.init(project="elbo-mnist-classifier", entity="elbo")
-
 
 def get_device():
     return 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -90,7 +85,6 @@ def test(model, test_dataset):
             loss += F.nll_loss(y_hat, y, reduction='sum').detach().cpu().numpy()
 
         loss = loss / len(test_dataset)
-        wandb.log({"test_loss": loss})
         print(f"Average Test Loss = {loss}")
         return y_output
 
@@ -104,12 +98,6 @@ if __name__ == '__main__':
     _num_epochs = 100
     _batch_size = 2000
     _lr = 0.01
-
-    wandb.config = {
-        "learning_rate": _lr,
-        "epochs": _num_epochs,
-        "batch_size": _batch_size
-    }
 
     _device = get_device()
 
@@ -126,5 +114,4 @@ if __name__ == '__main__':
 
             test_accuracy = 100. * (torch.sum(y_test_pred == y_test_true).detach().cpu() / (_test_data.data.size(0)))
             train_accuracy = 100. * (torch.sum(y_train_pred == y_train_true).detach().cpu() / (_train_data.data.size(0)))
-            wandb.log({"loss": _loss, "train_accuracy": train_accuracy, "test_accuracy": test_accuracy})
             print(f"Train accuracy - {train_accuracy} % Test accuracy - {test_accuracy} % Loss = {_loss}")
