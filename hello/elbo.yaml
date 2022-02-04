@@ -23,7 +23,7 @@ task_dir: .
 
 # Artifacts directory. This is the directory that will be copied over as output. All model related files -
 # checkpoints, generated samples, evaluation results etc. should be placed in this directory.
-artifacts: ~/artifacts
+artifacts: artifacts
 
 # Keep the Node alive after task completion. This can be used for notebooks of SSH'ing into the task
 keep_alive: True
