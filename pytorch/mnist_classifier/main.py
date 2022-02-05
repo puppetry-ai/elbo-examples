@@ -95,8 +95,8 @@ if __name__ == '__main__':
     _test_data = datasets.MNIST("data", train=False, transform=transforms.ToTensor(), download=True)
 
     _model = MNISTClassifier()
-    _num_epochs = 100
-    _batch_size = 2000
+    _num_epochs = 10
+    _batch_size = 200
     _lr = 0.01
 
     _device = get_device()
@@ -104,7 +104,7 @@ if __name__ == '__main__':
     y_test_true = _test_data.test_labels.to(_device)
     y_train_true = _train_data.train_labels.to(_device)
 
-    for _epoch in elbo.elbo.ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=10):
+    for _epoch in elbo.elbo.ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=1):
         _loss, y_train_pred = train(_model, _train_data, _batch_size, _lr)
 
         model_output = test(_model, _test_data)
