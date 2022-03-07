@@ -1,0 +1,1063 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Users/joy/projects/elbo-examples
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 148
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 40
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: ELBO Create
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 816
+    content: "r\e[K\r\e[49C\e[38;2;59;163;208mun --config ../elbo-examples/hello/elbo.yaml\r\e[49C\e[30m\e(B\e[m\b\e[38;2;34;94;121m\e[4mr\e[38;2;59;163;208m\e[24mun --config ../elbo-examples/hello/elbo.yaml\r\e[49C\e[30m\e(B\e[m"
+  - delay: 114
+    content: "\e[38;2;34;94;121m\e[4mu\e[38;2;59;163;208m\e[24mn --config ../elbo-examples/hello/elbo.yaml\r\e[50C\e[30m\e(B\e[m\b\b\e[38;2;34;94;121mru\e[38;2;59;163;208mn --config ../elbo-examples/hello/elbo.yaml\r\e[50C\e[30m\e(B\e[m"
+  - delay: 76
+    content: "\e[38;2;34;94;121mn\e[38;2;59;163;208m --config ../elbo-examples/hello/elbo.yaml\r\e[51C\e[30m\e(B\e[m"
+  - delay: 209
+    content: "\e[38;2;34;94;121m \e[38;2;59;163;208m--config ../elbo-examples/hello/elbo.yaml\r\e[52C\e[30m\e(B\e[m\b \e[38;2;59;163;208m--config ../elbo-examples/hello/elbo.yaml\r\e[52C\e[30m\e(B\e[m"
+  - delay: 830
+    content: "-\e[38;2;59;163;208m-config ../elbo-examples/hello/elbo.yaml\r\e[53C\e[30m\e(B\e[m\b\e[38;2;34;94;121m-\e[38;2;59;163;208m-config ../elbo-examples/hello/elbo.yaml\r\e[53C\e[30m\e(B\e[m"
+  - delay: 189
+    content: "\e[38;2;34;94;121m-\e[38;2;59;163;208mconfig ../elbo-examples/hello/elbo.yaml\r\e[54C\e[30m\e(B\e[m"
+  - delay: 126
+    content: "\e[38;2;34;94;121mc\e[38;2;59;163;208monfig ../elbo-examples/hello/elbo.yaml\r\e[55C\e[30m\e(B\e[m"
+  - delay: 112
+    content: "\e[38;2;34;94;121mo\e[38;2;59;163;208mnfig ../elbo-examples/hello/elbo.yaml\r\e[56C\e[30m\e(B\e[m"
+  - delay: 89
+    content: "\e[38;2;34;94;121mn\e[38;2;59;163;208mfig ../elbo-examples/hello/elbo.yaml\r\e[57C\e[30m\e(B\e[m"
+  - delay: 103
+    content: "\e[38;2;34;94;121mf\e[38;2;59;163;208mig ../elbo-examples/hello/elbo.yaml\r\e[58C\e[30m\e(B\e[m"
+  - delay: 107
+    content: "\e[38;2;34;94;121mi\e[38;2;59;163;208mg ../elbo-examples/hello/elbo.yaml\r\e[59C\e[30m\e(B\e[m"
+  - delay: 136
+    content: "\e[38;2;34;94;121mg\e[38;2;59;163;208m ../elbo-examples/hello/elbo.yaml\r\e[60C\e[30m\e(B\e[m"
+  - delay: 129
+    content: "\e[38;2;34;94;121m \e[38;2;59;163;208m../elbo-examples/hello/elbo.yaml\r\e[61C\e[30m\e(B\e[m\b \e[38;2;59;163;208m../elbo-examples/hello/elbo.yaml\r\e[61C\e[30m\e(B\e[m"
+  - delay: 479
+    content: "p\e[K\r\e[62C\e[38;2;59;163;208mytorch/mnist_classifier/elbo.yaml\r\e[62C\e[30m\e(B\e[m\b\e[38;2;34;94;121m\e[4mp\e[38;2;59;163;208m\e[24mytorch/mnist_classifier/elbo.yaml\r\e[62C\e[30m\e(B\e[m"
+  - delay: 301
+    content: "\e[38;2;34;94;121m\e[4my\e[38;2;59;163;208m\e[24mtorch/mnist_classifier/elbo.yaml\r\e[63C\e[30m\e(B\e[m"
+  - delay: 364
+    content: "\e[38;2;34;94;121m\e[4mtorch/mnist_classifier/elbo.yaml\r\e[95C\e[30m\e(B\e[m"
+  - delay: 913
+    content: "\r\e[95C\r\n\e[30m\e(B\e[m\e[?2004l\e]0;elbo run --config pytorch/mnist_classifier/elbo.yaml /Users/joy/projects/elbo-examples\a\e[30m\e(B\e[m\r"
+  - delay: 562
+    content: "\e[34melbo.client\e[0m is starting 'Train MNIST Classifier' submission ...\r\n\e[0m"
+  - delay: 920
+    content: "\e[34melbo.client\e[0m Hey Saravana \U0001F44B, welcome!\r\n\e[0m"
+  - delay: 7
+    content: "\e[34melbo.client\e[0m is uploading sources from pytorch/mnist_classifier/....\r\n\e[0m"
+  - delay: 631
+    content: "\e[34melbo.client\e[0m upload successful.\r\n\e[0m"
+  - delay: 128
+    content: "\e[0m\r\n\e[0m\e[?25l\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is finding compute options (this may take a while)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\e[?25h\e[0m\e[34melbo.client\e[0m number of compute choices - 25\r\n\e[0m\e[34melbo.client\e[0m Please choose:\r\n\e[0m"
+  - delay: 18
+    content: "\e[6n"
+  - delay: 7
+    content: "\e[?2004h\e[?1l\e[?25l\e[0m\e[?7l\e[0m\e[J\e[0;38;5;67m?\e[0;1m Please choose: \e[0m(Use arrow keys)\e[0m\r\r\n\e[0m »  $ 0.0028/hour        Micro (for testing)   2 cpu     1Gb mem    0Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m    $ 0.0150/hour     Standard (for testing)   1 cpu     2Gb mem    0Gb gpu-mem Linode (~ 9 mins to provision)\e[0m\r\r\n\e[0m    $ 0.0770/hour        Micro (for testing)   2 cpu     1Gb mem    0Gb gpu-mem AWS\e[0m\r\r\n\e[0m    $ 0.2700/hour           Nvidia Tesla K80   4 cpu    61Gb mem   12Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m    $ 0.9000/hour           Nvidia Tesla K80   4 cpu    61Gb mem   12Gb gpu-mem AWS\e[0m\r\r\n\e[0m    $ 0.9180/hour                Nvidia V100   8 cpu    61Gb mem   16Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m    $ 0.9600/hour               Nvidia A5000   2 cpu    16Gb mem   24Gb gpu-mem TensorDock\e[0m\r\r\n\e[0m    $ 1.4940/hour                 Nvidia A40   2 cpu    12Gb mem   48Gb gpu-mem TensorDock\e[0m\r\r\n\e[0m    $ 1.5000/hour         Nvidia Quadro 6000   8 cpu    32Gb mem    0Gb gpu-mem Linode (~ 9 mins to provision)\e[0m\r\r\n\e[0m    $ 1.5140/hour               Nvidia A6000   2 cpu    16Gb mem   48Gb gpu-mem TensorDock\e[0m\r\r\n\e[0m    $ 2.1600/hour        8x Nvidia Tesla K80  32 cpu   488Gb mem   12Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m    $ 3.0000/hour      2x Nvidia Quadro 6000  16 cpu    64Gb mem    0Gb gpu-mem Linode (~ 9 mins to provision)\e[0m\r\r\n\e[0m    $ 3.0600/hour                Nvidia V100   8 cpu    61Gb mem   16Gb gpu-mem AWS\e[0m\r\r\n\e[0m    $ 3.6720/hour             4x Nvidia V100  32 cpu   244Gb mem   16Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m    $ 3.7460/hour             7x Nvidia V100   6 cpu     8Gb mem   16Gb gpu-mem TensorDock\e[0m\r\r\n\e[0m    $ 4.3200/hour       16x Nvidia Tesla K80  64 cpu   732Gb mem   12Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m    $ 4.5000/hour      3x Nvidia Quadro 6000  20 cpu    96Gb mem    0Gb gpu-mem Linode (~ 9 mins to provision)\e[0m\r\r\n\e[0m    $ 6.0000/hour      4x Nvidia Quadro 6000  24 cpu   128Gb mem    0Gb gpu-mem Linode (~ 9 mins to provision)\e[0m\r\r\n\e[0m    $ 7.3440/hour             8x Nvidia V100  64 cpu   488Gb mem   16Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m    $ 7.9200/hour        8x Nvidia Tesla K80  32 cpu   488Gb mem   12Gb gpu-mem AWS\e[0m\r\r\n\e[0m    $ 9.8318/hour             8x Nvidia A100  96 cpu  1152Gb mem   80Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m    $13.0360/hour             4x Nvidia V100  32 cpu   244Gb mem   16Gb gpu-mem AWS\e[0m\r\r\n\e[0m    $14.4000/hour       16x Nvidia Tesla K80  64 cpu   732Gb mem   12Gb gpu-mem AWS\e[0m\r\r\n\e[0m    $24.4800/hour             8x Nvidia V100  64 cpu   488Gb mem   16Gb gpu-mem AWS\e[0m\r\r\n\e[0m    $32.7726/hour             8x Nvidia A100  96 cpu  1152Gb mem   80Gb gpu-mem AWS\e[83D\e[25A\e[33C\e[?7h\e[0m"
+  - delay: 7
+    content: "\e[?25l\e[?7l\e[0m\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\e[0m    $32.7726/hour             8x Nvidia A100  96 cpu  1152Gb mem   80Gb gpu-mem AWS\e[0m\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\e[0m \b\e[31A\e[33C\e[?7h\e[0m"
+  - delay: 2792
+    content: "\e[?25l\e[?7l\e[0m\r\r\n\e[0m    $ 0.0028/hour        Micro (for testing)   2 cpu     1Gb mem    0Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m »  $ 0.0150/hour     Standard (for testing)   1 cpu     2Gb mem    0Gb gpu-mem Linode (~ 9 mins to provision)\e[2A\e[77D\e[?7h\e[0m"
+  - delay: 246
+    content: "\e[?25l\e[?7l\e[0m\r\r\n\r\r\n\e[0m    $ 0.0150/hour     Standard (for testing)   1 cpu     2Gb mem    0Gb gpu-mem Linode (~ 9 mins to provision)\e[0m\r\r\n\e[0m »  $ 0.0770/hour        Micro (for testing)   2 cpu     1Gb mem    0Gb gpu-mem AWS\e[3A\e[50D\e[?7h\e[0m"
+  - delay: 220
+    content: "\e[?25l\e[?7l\e[0m\r\r\n\r\r\n\r\r\n\e[0m    $ 0.0770/hour        Micro (for testing)   2 cpu     1Gb mem    0Gb gpu-mem AWS\e[0m\r\r\n\e[0m »  $ 0.2700/hour           Nvidia Tesla K80   4 cpu    61Gb mem   12Gb gpu-mem AWS (spot)\e[4A\e[57D\e[?7h\e[0m"
+  - delay: 185
+    content: "\e[?25l\e[?7l\e[0m\r\r\n\r\r\n\r\r\n\r\r\n\e[0m    $ 0.2700/hour           Nvidia Tesla K80   4 cpu    61Gb mem   12Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m »  $ 0.9000/hour           Nvidia Tesla K80   4 cpu    61Gb mem   12Gb gpu-mem AWS\e[5A\e[50D\e[?7h\e[0m"
+  - delay: 257
+    content: "\e[?25l\e[?7l\e[0m\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\e[0m    $ 0.9000/hour           Nvidia Tesla K80   4 cpu    61Gb mem   12Gb gpu-mem AWS\e[0m\r\r\n\e[0m »  $ 0.9180/hour                Nvidia V100   8 cpu    61Gb mem   16Gb gpu-mem AWS (spot)\e[6A\e[57D\e[?7h\e[0m"
+  - delay: 260
+    content: "\e[?25l\e[?7l\e[0m\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\e[0m    $ 0.9180/hour                Nvidia V100   8 cpu    61Gb mem   16Gb gpu-mem AWS (spot)\e[0m\r\r\n\e[0m »  $ 0.9600/hour               Nvidia A5000   2 cpu    16Gb mem   24Gb gpu-mem TensorDock\e[7A\e[57D\e[?7h\e[0m"
+  - delay: 1005
+    content: "\e[?25l\e[?7l\e[33D\e[0m\e[J\e[0;38;5;67m?\e[0;1m Please choose: \e[0;38;5;214;1m $ 0.9600/hour               Nvidia A5000   2 cpu    16Gb mem   24Gb gpu-mem TensorDock \e[105D\e[0m\r\r\n\e[J\e[?7h\e[0m\e[?12l\e[?25h\e[?2004l\e[?25l\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 87
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 79
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 98
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 103
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 88
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 89
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 76
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 80
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 87
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 88
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 87
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 82
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 88
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 83
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 79
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 88
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(●     )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m( ●    )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 86
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 81
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(     ●)\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(    ● )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 105
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(   ●  )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 85
+    content: "\e[0m\r\e[0m\e[K\e[0m\r\e[1m\e[36m(  ●   )\e[0m elbo.client is provisioning compute (usually takes ~ 4 minutes, ☕️ time!)"
+  - delay: 84
+    content: "\e[0m\r\e[0m\e[K\e[0m\e[?25h\e[0m\e[34melbo.client\e[0m compute node ip 216.153.50.238\r\n\e[0m\e[34melbo.client\e[0m task with ID 85 is submitted successfully.\r\n\e[0m\e[34melbo.client\e[0m ----------------------------------------------\r\n\e[0m\e[34melbo.client\e[0m ssh using - ssh root@216.153.50.238 -p 2222\r\n\e[0m\e[34melbo.client\e[0m scp using - scp root@216.153.50.238 -p 2222\r\n\e[0m\e[34melbo.client\e[0m password: Ox-I5Zu_18qAv_q29A\r\n\e[0m\e[34melbo.client\e[0m ----------------------------------------------\r\n\e[0m\e[0m\r\n\e[34melbo.client\e[0m here are URLS for task logs ...\r\n\e[0m\e[34melbo.client\e[0m setup logs        - http://216.153.50.238/setup\r\n\e[0m\e[34melbo.client\e[0m requirements logs - http://216.153.50.238/requirements\r\n\e[0m\e[34melbo.client\e[0m task logs         - http://216.153.50.238/task\r\n\e[0m\e[0m\e[0m\r\n\e[34melbo.client\e[0m TIP: \U0001F4A1 see task details with command: `elbo show 85`\r\n\e[0m\e[0m\e[0m\r\n\e[34melbo.client\e[0m ⏳ It may take a minute or two for the node to be reachable.\r\n\e[0m\e[0m\r\e[0m\e[K\e[0m\e[?25h\e[0m\r\e[0m\e[K\e[0m\e[?25h\e[0m"
+  - delay: 1158
+    content: "\e[0m"
+  - delay: 90
+    content: "\e[2m⏎\e(B\e[m                                                                                                                                                   \r⏎ \r\e[K\e[?2004h"
+  - delay: 60
+    content: "\e]0;fish /Users/joy/projects/elbo-examples\a\e[30m\e(B\e[m\r(.venv) \e[92mjoy\e(B\e[m@\e(B\e[melbo\e(B\e[m \e[32m~/p/elbo-examples\e(B\e[m (main)\e(B\e[m> \e[K\r\e[43C"
+  - delay: 11633
+    content: "\r\n\e[30m\e(B\e[m\e[30m\e(B\e[m\e[?2004lelbo:elbo-examples joy$ "
+  - delay: 590
+    content: "logout\r\n"

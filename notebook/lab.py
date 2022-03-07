@@ -3,7 +3,8 @@ Sample script to start a jupyter lab
 """
 import subprocess
 
-TASK_COMMAND = "jupyter lab --allow-root --no-browser --port=8080 --ip=0.0.0.0"
+TASK_COMMAND = "jupyter lab --allow-root --no-browser --port=8080 --ip=0.0.0.0 " \
+               "--NotebookApp.token='62129aa18566'"
 
 if __name__ == "__main__":
     print(f"jupyter lab is starting ...")
