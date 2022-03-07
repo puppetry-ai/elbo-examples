@@ -1,9 +1,9 @@
 #
-# ELBO Sample Config File for MNIST Classifier Task
+# ELBO Sample Config File for MNIST Generator Task
 #
 # All paths are relative to where the `elbo.yaml` file is placed
 
-name: "Train MNIST Classifier"
+name: "Train MNIST Generator"
 
 # The GPU class to use - Economy, MidRange, HighEnd
 gpu_class: All
