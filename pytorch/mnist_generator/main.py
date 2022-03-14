@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pytorch_lightning as pl
 import torch
+# noinspection PyPep8Naming
 import torch.nn.functional as F
 import tqdm
 from pytorch_fid import fid_score
@@ -77,7 +78,6 @@ class MNISTDataModule(pl.LightningDataModule):
     def setup(self, stage: Optional[str] = None) -> None:
         device = get_device()
         train_x = np.array([np.array(x) for x, _ in datasets.MNIST(self._data_dir, train=True, download=True)])
-        train_y = np.array([np.array(y) for _, y in datasets.MNIST(self._data_dir, train=True, download=True)])
         train_x = train_x.astype(np.float32) / 255.0
         train_x = [torch.tensor(x).to(device) for x in train_x]
         train_data_set = MNISTTensorDataSet(train_x)
@@ -89,7 +89,6 @@ class MNISTDataModule(pl.LightningDataModule):
         )
 
         test_x = np.array([np.array(x) for x, _ in datasets.MNIST(self._data_dir, train=False, download=True)])
-        test_y = np.array([np.array(y) for _, y in datasets.MNIST(self._data_dir, train=False, download=True)])
         test_x = test_x.astype(np.float32) / 255.0
         test_x = [torch.tensor(x).to(device) for x in test_x]
         test_data_set = MNISTTensorDataSet(test_x)
@@ -304,9 +303,6 @@ class Encoder(nn.Module):
             nn.Linear(input_dim // 8, z_dim),
         )
 
-        # v = u.unsqueeze(-1).expand(128, 800, 4, 2048)
-        # (v.reshape((2048, 800, 4, 128)) - output.unsqueeze(-1))
-        # torch.norm((v.reshape((2048, 800, 4, 128)) - output.unsqueeze(-1)), dim=2)
         self._device = get_device()
         self._seq_len = seq_len
         self._seq_width = seq_width
@@ -317,6 +313,7 @@ class Encoder(nn.Module):
         mean = self._fc_mean(h)
         log_var = self._fc_log_var(h)
         return mean, log_var
+
 
 class Decoder(nn.Module):
     """
@@ -477,7 +474,7 @@ if __name__ == "__main__":
     _max_epochs = 100
     _optimizer = _model.configure_optimizers()
     _model.setup()
-    for _epoch in elbo.elbo.ElboEpochIterator(range(1, _max_epochs + 1), _model):
+    for _epoch in elbo.elbo.ElboEpochIterator(range(0, _max_epochs), _model):
         _model.train()
         _model.fit(_epoch, _optimizer)
         _model.eval()
