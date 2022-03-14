@@ -29,7 +29,7 @@ def get_device():
 #
 def calculate_fid(validation_samples, generated_samples):
     # calculate mean and covariance statistics
-    val = torch.cat(validation_samples, 2).squeeze(0)
+    val = torch.cat(validation_samples, 1).reshape(-1, 28)
     gen = torch.cat(generated_samples, 1).squeeze(0).T
 
     mu1, sigma1 = torch.mean(val, dim=1), torch.cov(val)
@@ -67,6 +67,7 @@ class MNISTDataModule(pl.LightningDataModule):
                  data_shape=(28, 28),
                  ):
         super().__init__()
+        self._val_dataloader = None
         self._data_dir = data_dir
         self._batch_size = batch_size
         self._train_dataloader = None
@@ -80,7 +81,18 @@ class MNISTDataModule(pl.LightningDataModule):
         train_x = np.array([np.array(x) for x, _ in datasets.MNIST(self._data_dir, train=True, download=True)])
         train_x = train_x.astype(np.float32) / 255.0
         train_x = [torch.tensor(x).to(device) for x in train_x]
-        train_data_set = MNISTTensorDataSet(train_x)
+        full_data_set = MNISTTensorDataSet(train_x)
+
+        test_x = np.array([np.array(x) for x, _ in datasets.MNIST(self._data_dir, train=False, download=True)])
+        test_x = test_x.astype(np.float32) / 255.0
+        test_x = [torch.tensor(x).to(device) for x in test_x]
+        test_data_set = MNISTTensorDataSet(test_x)
+
+        # Split train to train and val
+        val_size = len(test_data_set)
+        train_size = len(full_data_set) - val_size
+
+        train_data_set, val_data_set = torch.utils.data.random_split(full_data_set, [train_size, val_size])
         train_loader = torch.utils.data.DataLoader(
             train_data_set,
             batch_size=self._batch_size,
@@ -88,10 +100,11 @@ class MNISTDataModule(pl.LightningDataModule):
             num_workers=self._num_workers,
         )
 
-        test_x = np.array([np.array(x) for x, _ in datasets.MNIST(self._data_dir, train=False, download=True)])
-        test_x = test_x.astype(np.float32) / 255.0
-        test_x = [torch.tensor(x).to(device) for x in test_x]
-        test_data_set = MNISTTensorDataSet(test_x)
+        val_loader = torch.utils.data.DataLoader(
+            val_data_set,
+            batch_size=self._batch_size, shuffle=True,
+            num_workers=self._num_workers)
+
         test_loader = torch.utils.data.DataLoader(
             test_data_set,
             batch_size=self._batch_size, shuffle=True,
@@ -99,6 +112,7 @@ class MNISTDataModule(pl.LightningDataModule):
 
         self._train_dataloader = train_loader
         self._test_dataloader = test_loader
+        self._val_dataloader = val_loader
 
     def train_dataloader(self) -> TRAIN_DATALOADERS:
         return self._train_dataloader
@@ -107,7 +121,7 @@ class MNISTDataModule(pl.LightningDataModule):
         return self._test_dataloader
 
     def val_dataloader(self) -> EVAL_DATALOADERS:
-        raise NotImplementedError(f"No VAL data loader for MNIST")
+        return self._val_dataloader
 
     def teardown(self, stage: Optional[str] = None) -> None:
         pass
@@ -417,12 +431,12 @@ class SimpleVae(BaseModel):
 
     def compute_fid(self):
         generated_samples = []
-        n_samples = len(self._dms.val_dataloader().dataset)
+        n_samples = len(self._dms.val_dataloader().dataset)//10
         device = self._device
         print("Generating samples...")
 
         for batch_idx in tqdm.tqdm(range(0, n_samples)):
-            rand_z = torch.randn(self._pitches_decoder.z_dim)
+            rand_z = torch.randn(self._z_dim)
             rand_z = rand_z.to(device)
             x_hat = self._decoder(rand_z)
             generated_samples.append(x_hat)
@@ -460,13 +474,13 @@ class SimpleVae(BaseModel):
 if __name__ == "__main__":
     print(f"Training simple VAE")
     _batch_size = 100
-    _alpha = 15
+    _alpha = 1
     _z_dim = 20
     _model = SimpleVae(
         alpha=_alpha,
         z_dim=_z_dim,
         input_shape=(28, 28),
-        sample_output_step=10,
+        sample_output_step=1,
         batch_size=_batch_size
     )
     print(f"Training --> {_model}")
