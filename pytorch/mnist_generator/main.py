@@ -424,7 +424,7 @@ class SimpleVae(BaseModel):
         return self._alpha
 
 
-if __name__ == "__main__":
+def train_generator():
     print(f"Training simple VAE")
     _batch_size = 10
     _alpha = 1
@@ -449,3 +449,7 @@ if __name__ == "__main__":
             _model.eval()
             _model.sample_output(_epoch)
             _model.save()
+
+
+if __name__ == "__main__":
+    train_generator()
