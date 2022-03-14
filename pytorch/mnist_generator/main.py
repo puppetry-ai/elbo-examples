@@ -301,7 +301,7 @@ class Encoder(nn.Module):
         input_dim = (seq_len * seq_width)
 
         self._net = nn.Sequential(
-            nn.GRU(input_size=seq_len, hidden_size=seq_len, num_layers=16, batch_first=True, bidirectional=True),
+            nn.GRU(input_size=seq_len, hidden_size=seq_len, num_layers=6, batch_first=True, bidirectional=True),
             ExtractLSTMOutput(),
             nn.Flatten(start_dim=1),
             nn.Linear(input_dim * 2, input_dim // 2),
@@ -340,12 +340,7 @@ class Decoder(nn.Module):
         self._output_shape = output_shape
         seq_len = output_shape[0]
         seq_width = output_shape[1]
-
-        if output_shape[0] < 100:
-            scale = 1
-        else:
-            scale = 1
-
+        scale = 1
         output_dim = (seq_len * seq_width) // scale
         self._net = nn.Sequential(
             nn.Linear(z_dim, output_dim * scale),
@@ -375,7 +370,7 @@ class Decoder(nn.Module):
 
 class SimpleVae(BaseModel):
     def __init__(self,
-                 z_dim=64,
+                 z_dim=8,
                  input_shape=(28, 28),
                  alpha=1.0,
                  *args: Any,
@@ -431,7 +426,7 @@ class SimpleVae(BaseModel):
 
     def compute_fid(self):
         generated_samples = []
-        n_samples = len(self._dms.val_dataloader().dataset)//10
+        n_samples = len(self._dms.val_dataloader().dataset)//1000
         device = self._device
         print("Generating samples...")
 
@@ -473,7 +468,7 @@ class SimpleVae(BaseModel):
 
 if __name__ == "__main__":
     print(f"Training simple VAE")
-    _batch_size = 100
+    _batch_size = 10
     _alpha = 1
     _z_dim = 20
     _model = SimpleVae(
