@@ -1,8 +1,0 @@
-torch
-pytorch-lightning
-pandas
-matplotlib
-torchvision
-magenta
-miditoolkit
-wandb

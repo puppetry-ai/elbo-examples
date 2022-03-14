@@ -26,4 +26,4 @@ task_dir: .
 artifacts: artifacts
 
 # Keep the Node alive after task completion. This can be used for notebooks of SSH'ing into the task
-keep_alive: True
+keep_alive: False

@@ -1,6 +1,5 @@
 import os
 import os.path
-from datetime import datetime
 from typing import Any
 from typing import Optional
 
@@ -11,7 +10,7 @@ import pytorch_lightning as pl
 import torch
 import torch.nn.functional as F
 import tqdm
-import wandb
+from pytorch_fid import fid_score
 from pytorch_lightning.utilities.types import TRAIN_DATALOADERS, EVAL_DATALOADERS
 from torch import nn
 from torch.nn import functional as func
@@ -24,8 +23,28 @@ def get_device():
     return device
 
 
+#
+# Based on https://machinelearningmastery.com/how-to-implement-the-frechet-inception-distance-fid-from-scratch/
+#
+def calculate_fid(validation_samples, generated_samples):
+    # calculate mean and covariance statistics
+    val = torch.cat(validation_samples, 2).squeeze(0)
+    gen = torch.cat(generated_samples, 1).squeeze(0).T
+
+    mu1, sigma1 = torch.mean(val, dim=1), torch.cov(val)
+    mu2, sigma2 = torch.mean(gen, dim=1), torch.cov(gen)
+
+    mu1 = mu1.cpu().detach().numpy()
+    mu2 = mu2.cpu().detach().numpy()
+    sigma1 = sigma1.cpu().detach().numpy()
+    sigma2 = sigma2.cpu().detach().numpy()
+
+    fid = fid_score.calculate_frechet_distance(mu2, sigma2, mu1, sigma1)
+    return fid
+
+
 class MNISTTensorDataSet(Dataset):
-    def __init__(self, tensors, batch_size):
+    def __init__(self, tensors):
         self.batched_tensors = tensors
 
     def __getitem__(self, index):
@@ -61,7 +80,7 @@ class MNISTDataModule(pl.LightningDataModule):
         train_y = np.array([np.array(y) for _, y in datasets.MNIST(self._data_dir, train=True, download=True)])
         train_x = train_x.astype(np.float32) / 255.0
         train_x = [torch.tensor(x).to(device) for x in train_x]
-        train_data_set = MNISTTensorDataSet(train_x, batch_size=self._batch_size)
+        train_data_set = MNISTTensorDataSet(train_x)
         train_loader = torch.utils.data.DataLoader(
             train_data_set,
             batch_size=self._batch_size,
@@ -73,8 +92,7 @@ class MNISTDataModule(pl.LightningDataModule):
         test_y = np.array([np.array(y) for _, y in datasets.MNIST(self._data_dir, train=False, download=True)])
         test_x = test_x.astype(np.float32) / 255.0
         test_x = [torch.tensor(x).to(device) for x in test_x]
-        test_y = test_y.astype(np.float32)
-        test_data_set = MNISTTensorDataSet(test_x, batch_size=self._batch_size)
+        test_data_set = MNISTTensorDataSet(test_x)
         test_loader = torch.utils.data.DataLoader(
             test_data_set,
             batch_size=self._batch_size, shuffle=True,
@@ -96,7 +114,7 @@ class MNISTDataModule(pl.LightningDataModule):
         pass
 
 
-class BaseModel(torch.nn.Module, elbo.elbo.ElboModel):
+class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
     """
     Base model class that will be inherited by all model types
     """
@@ -120,8 +138,7 @@ class BaseModel(torch.nn.Module, elbo.elbo.ElboModel):
                  emit_tensorboard_scalars=True,
                  use_mnist_dms=False,
                  *args: Any, **kwargs: Any):
-        super(BaseModel, self).__init__(*args, **kwargs)
-        now = datetime.now()
+        super(BaseModel, self).__init__()
         self._data_dir = data_dir
         self._output_dir = output_dir
         os.makedirs(self._output_dir, exist_ok=True)
@@ -165,7 +182,7 @@ class BaseModel(torch.nn.Module, elbo.elbo.ElboModel):
     def enable_debugging():
         torch.autograd.set_detect_anomaly(True)
 
-    def loss_function(self, x_hat_bp, x_hat, x, x_control, qm, qv):
+    def loss_function(self, x_hat, x, qm, qv):
         raise NotImplementedError(f"Please implement loss_function()")
 
     def step(self, batch, batch_idx):
@@ -199,15 +216,11 @@ class BaseModel(torch.nn.Module, elbo.elbo.ElboModel):
         kl_loss = batch_kl_loss / len(self._dms.train_dataloader().dataset)
         recon_loss = batch_recon_loss / len(self._dms.train_dataloader().dataset)
 
-        wandb.log({'loss': loss})
-        wandb.log({'kl_loss': kl_loss})
-        wandb.log({'recon_loss': recon_loss})
-        print(
-            f'====> Train Loss = {loss} KL = {kl_loss} Recon = {recon_loss}  Epoch = {epoch}')
+        print(f'====> Train Loss = {loss} KL = {kl_loss} Recon = {recon_loss}  Epoch = {epoch}')
 
     def save(self):
         model_save_path = os.path.join(self._output_dir,
-                                       f"{self._model_prefix}-{wandb.run.name}.checkpoint")
+                                       f"{self._model_prefix}.checkpoint")
         print(f"Saving model to --> {model_save_path}")
         torch.save(self.state_dict(), model_save_path)
 
@@ -232,10 +245,6 @@ class BaseModel(torch.nn.Module, elbo.elbo.ElboModel):
         loss = batch_test_loss / len(self._dms.test_dataloader().dataset)
         kl_loss = batch_kl_loss / len(self._dms.test_dataloader().dataset)
         recon_loss = batch_recon_loss / len(self._dms.test_dataloader().dataset)
-
-        wandb.log({'test_loss': loss})
-        wandb.log({'test_kl_loss': kl_loss})
-        wandb.log({'test_recon_loss': recon_loss})
         print(f'====> Test Loss = {loss} KL = {kl_loss} Recon = {recon_loss}')
 
     @property
@@ -271,15 +280,9 @@ class Encoder(nn.Module):
     VAE Encoder takes the input and maps it to latent representation Z
     """
 
-    def __init__(self, z_dim, p_embedding, v_embedding, i_embedding, pr_embedding, input_shape):
+    def __init__(self, z_dim, input_shape):
         super(Encoder, self).__init__()
-
         self._z_dim = z_dim
-        if input_shape[0] < 100:
-            scale = 1
-        else:
-            scale = 1
-
         seq_len = input_shape[0]
         seq_width = input_shape[1]
         input_dim = (seq_len * seq_width)
@@ -308,84 +311,12 @@ class Encoder(nn.Module):
         self._seq_len = seq_len
         self._seq_width = seq_width
 
-        self._pr_embedding = pr_embedding
-        self._i_embedding = i_embedding
-        self._v_embedding = v_embedding
-        self._p_embedding = p_embedding
-
     def forward(self, x):
         x_input = x.reshape((-1, self._seq_width, self._seq_len))
         h = self._net(x_input)
         mean = self._fc_mean(h)
         log_var = self._fc_log_var(h)
         return mean, log_var
-
-
-class DecoderCategorical(nn.Module):
-    """
-    VAE Decoder takes the latent Z and maps it to output of shape of the input
-    """
-
-    def __init__(self, z_dim, output_shape, embedding, clam_output=False):
-        super(DecoderCategorical, self).__init__()
-        self._z_dim = z_dim
-        self._output_shape = output_shape
-        seq_len = output_shape[0]
-        seq_width = output_shape[1]
-
-        if output_shape[0] < 100:
-            scale = 1
-        else:
-            scale = 1
-
-        output_dim = (seq_len * seq_width) // scale
-        self._net = nn.Sequential(
-            nn.Linear(z_dim, output_dim * scale),
-            nn.Dropout(0.4),
-            Reshape1DTo2D((seq_width, seq_len)),
-            nn.GRU(input_size=seq_len, hidden_size=seq_len, num_layers=4, batch_first=True),
-            ExtractLSTMOutput()
-        )
-        self._seq_len = seq_len
-        self._seq_width = seq_width
-        self._embedding = embedding
-        self._clamp_output = clam_output
-
-    @staticmethod
-    def get_classification_from_output(output, embedding):
-        reshape = False
-        if output.shape[0] == MAX_MIDI_ENCODING_ROWS:
-            output = output.reshape(-1, MAX_MIDI_ENCODING_ROWS)
-            output = output.unsqueeze(-1)
-            reshape = True
-        w = embedding.weight.data
-        # Expand to output size, without memory increase
-        w = w.expand(-1, output.shape[1])
-        w = w.unsqueeze(-1)
-        # dist = w.expand(128, output.shape[1], output.shape[0]).reshape(
-        #    (output.shape[0], output.shape[1], -1)) - output
-        dist = torch.abs((w - output[:, None, :]))
-        classification = torch.argmin(dist, dim=1)
-
-        if reshape:
-            classification = classification.reshape(MAX_MIDI_ENCODING_ROWS, -1)
-        return classification.type(torch.float32)
-
-    def forward(self, z):
-        output = self._net(z)
-        if self._clamp_output:
-            # Clamp output in (0, 1) to prevent errors in BCE
-            output = torch.clamp(output, 1e-8, 1 - 1e-8)
-        else:
-            output = output.reshape((-1, self._seq_len, self._seq_width))
-
-        classification = DecoderCategorical.get_classification_from_output(output, self._embedding)
-        return classification, output
-
-    @property
-    def z_dim(self):
-        return self._z_dim
-
 
 class Decoder(nn.Module):
     """
@@ -411,7 +342,7 @@ class Decoder(nn.Module):
             Reshape1DTo2D((seq_width, seq_len)),
             nn.GRU(input_size=seq_len, hidden_size=seq_len, num_layers=4, batch_first=True),
             ExtractLSTMOutput(),
-            nn.Tanh()
+            nn.Sigmoid()
         )
         self._seq_len = seq_len
         self._seq_width = seq_width
@@ -431,103 +362,46 @@ class Decoder(nn.Module):
         return self._z_dim
 
 
-class ControllableDecoder(nn.Module):
-    """
-    VAE Decoder takes the latent Z and maps it to output of shape of the input
-    """
-
-    def __init__(self, z_dim, partial_shape, output_shape, clam_output=False):
-        super(ControllableDecoder, self).__init__()
-        self._z_dim = z_dim
-        self._output_shape = output_shape
-        seq_len = output_shape[0] - partial_shape[0]
-        seq_width = output_shape[1]
-
-        if output_shape[0] < 100:
-            scale = 1
-        else:
-            scale = 1
-
-        output_dim = (seq_len * seq_width) // scale
-        self._net = nn.Sequential(
-            nn.Linear(z_dim + partial_shape[0] * partial_shape[1], output_dim * scale),
-            nn.Dropout(0.2),
-            Reshape1DTo2D((seq_width, seq_len)),
-            nn.GRU(input_size=seq_len, hidden_size=seq_len, num_layers=16, batch_first=True),
-            ExtractLSTMOutput(),
-            nn.Tanh()
-        )
-        self._seq_len = seq_len
-        self._seq_width = seq_width
-        self._clamp_output = clam_output
-
-        self._partial_len = partial_shape[0]
-        self._partial_width = partial_shape[1]
-
-    def forward(self, z, x_partial):
-        x_flat = torch.flatten(x_partial, start_dim=1)
-        input = torch.cat((z, x_flat), dim=1)
-        output = self._net(input)
-        if self._clamp_output:
-            # Clamp output in (0, 1) to prevent errors in BCE
-            output = torch.clamp(output, 1e-8, 1 - 1e-8)
-        else:
-            output = output.reshape((-1, self._seq_len, self._seq_width))
-
-        output = torch.cat((x_partial, output), dim=1)
-        return output
-
-    @property
-    def z_dim(self):
-        return self._z_dim
-
-
 class SimpleVae(BaseModel):
-    def __init__(self, z_dim=64, input_shape=(10000, 8), alpha=1.0, *args: Any, **kwargs: Any):
+    def __init__(self,
+                 z_dim=64,
+                 input_shape=(28, 28),
+                 alpha=1.0,
+                 *args: Any,
+                 **kwargs: Any):
         super(SimpleVae, self).__init__(*args, **kwargs)
-
         self._encoder = Encoder(z_dim,
                                 input_shape=input_shape)
-
-        self._velocity_decoder = DecoderCategorical(z_dim, self._velocities_shape, self._velocity_embedding)
-        self._start_times_decoder = Decoder(z_dim, self._start_times_shape)
-        self._end_times_decoder = Decoder(z_dim, self._end_times_shape)
-        self._instruments_decoder = DecoderCategorical(z_dim, self._instruments_shape, self._instrument_embedding)
-        self._program_decoder = DecoderCategorical(z_dim, self._programs_shape, self._program_embedding)
-
-        self._controllable_decoder = ControllableDecoder(z_dim, (input_shape[0] // 3, input_shape[1]), input_shape)
+        self._decoder = Decoder(z_dim, input_shape)
         self._alpha = alpha
-        self._model_prefix = "SimpleVaeMidi"
+        self._model_prefix = "VAE_MNIST"
         self._z_dim = z_dim
         self._device = get_device()
 
     @staticmethod
     def from_pretrained(checkpoint_path, z_dim, input_shape):
         print(f"Loading from {checkpoint_path}...")
-        _model = SimpleVae(z_dim=z_dim, input_shape=input_shape)
-        _model.load_state_dict(torch.load(checkpoint_path))
-        return _model
+        model = SimpleVae(z_dim=z_dim, input_shape=input_shape)
+        model.load_state_dict(torch.load(checkpoint_path))
+        return model
 
     def forward(self, x):
         mean, log_var = self._encoder(x)
+
         z = SimpleVae.reparameterize(mean, log_var)
+        x_hat = self._decoder(z)
+        return z, x_hat, mean, log_var
 
-        x_hat = torch.vstack(
-            (x_p.T, x_v.T, x_i.T, x_programs.T, x_start_times.T, x_end_times.T)).T
-
-        x_control = self._controllable_decoder(z, x[:, 0: x.shape[1] // 3])
-        return z, x_hat, x_hat_bp, x_control, mean, log_var
-
-    def loss_function(self, x_hat_bp, x_hat, x, x_control, mu, q_log_var):
-        recon_loss = func.binary_cross_entropy(x_hat, x.view(-1, 784), reduction='sum')
+    def loss_function(self, x_hat, x, mu, q_log_var):
+        recon_loss = func.binary_cross_entropy(x_hat, x, reduction='sum')
         kl = self._kl_simple(mu, q_log_var)
         loss = recon_loss + self.alpha * kl
         return loss, kl, recon_loss
 
     def step(self, batch, batch_idx):
         x = batch
-        z, x_hat, x_hat_bp, x_control, mu, q_log_var = self(x)
-        loss = self.loss_function(x_hat_bp, x_hat, x, x_control, mu, q_log_var)
+        z, x_hat, mu, q_log_var = self(x)
+        loss = self.loss_function(x_hat, x, mu, q_log_var)
         return loss
 
     @staticmethod
@@ -550,93 +424,22 @@ class SimpleVae(BaseModel):
         device = self._device
         print("Generating samples...")
 
-        for i in tqdm.tqdm(range(0, n_samples)):
+        for batch_idx in tqdm.tqdm(range(0, n_samples)):
             rand_z = torch.randn(self._pitches_decoder.z_dim)
-            rand_z_np = rand_z.numpy()
             rand_z = rand_z.to(device)
-
-            x_pitches, _ = self._pitches_decoder(rand_z)
-            x_velocity, _ = self._velocity_decoder(rand_z)
-            x_start_times = self._start_times_decoder(rand_z)
-            x_end_times = self._end_times_decoder(rand_z)
-            x_instruments, _ = self._instruments_decoder(rand_z)
-            x_programs, _ = self._program_decoder(rand_z)
-            output = torch.vstack(
-                (x_pitches.T, x_velocity.T, x_instruments.T, x_programs.T, x_start_times.T, x_end_times.T)).T
-            generated_samples.append(output)
-
-            # sample = output.to("cpu").detach().numpy()
-            # output_dir = os.path.join(self._output_dir, f"sample-{wandb.run.name}")
-            # os.makedirs(output_dir, exist_ok=True)
-            # sample_file_name = os.path.join(output_dir,
-            #                                f"{self._model_prefix}-{wandb.run.name}-sample-{i}.midi")
-            # z_file = os.path.join(output_dir, f"z-{self._model_prefix}-{wandb.run.name}-sample-{i}.npy")
-            # import numpy as np
-            # np.save(z_file, rand_z_np)
-            # save_decoder_output_as_midi(sample, sample_file_name, self._data_mean, self._data_std)
-
-        # Generate some controllable music
-        generated_control_samples = []
-        print("Generate control samples...")
-        for batch_idx, batch in tqdm.tqdm(enumerate(self._dms.test_dataloader())):
-            # TODO: Clean up this mess
-            rand_z = torch.randn(self._pitches_decoder.z_dim)
-            rand_z_np = rand_z.numpy()
-            rand_z = rand_z.to(device)
-            batch = batch.to(device)
-
-            for test_sample in batch:
-                control = test_sample.T.unsqueeze(0)
-                control = control[:, 0:100, :]
-                control_output = self._controllable_decoder(rand_z.unsqueeze(0), control)
-                x = control_output
-
-                x_pitches = DecoderCategorical.get_classification_from_output(x.T[0], self._pitch_embedding)
-                x_velocity = DecoderCategorical.get_classification_from_output(x.T[1], self._velocity_embedding)
-                x_instruments = DecoderCategorical.get_classification_from_output(x.T[2], self._instrument_embedding)
-                x_programs = DecoderCategorical.get_classification_from_output(x.T[3], self._program_embedding)
-                output = torch.stack(
-                    (x_pitches, x_velocity, x_instruments, x_programs, control_output.T[4], control_output.T[5])).T
-                generated_control_samples.append(output)
-            # sample = output.to("cpu").detach().numpy()
-            # sample = sample.reshape((300, 6))
-
-            # output_dir = os.path.join(self._output_dir, f"sample-control-{wandb.run.name}")
-            # os.makedirs(output_dir, exist_ok=True)
-
-            # z_file = os.path.join(output_dir, f"z-{self._model_prefix}-{wandb.run.name}-sample-{batch_idx}.npy")
-            # import numpy as np
-            # np.save(z_file, rand_z_np)
-
-            # sample_file_name = os.path.join(output_dir,
-            # f"{self._model_prefix}-control-{wandb.run.name}-{batch_idx}.midi")
-            # save_decoder_output_as_midi(sample, sample_file_name, self._data_mean, self._data_std)
+            x_hat = self._decoder(rand_z)
+            generated_samples.append(x_hat)
             if batch_idx > n_samples:
                 break
 
         validation_samples = []
         for batch_idx, batch in tqdm.tqdm(enumerate(self._dms.val_dataloader())):
-            for x in batch:
-                x[0] = DecoderCategorical.get_classification_from_output(x[0], self._pitch_embedding).squeeze(1)
-                x[1] = DecoderCategorical.get_classification_from_output(x[1], self._velocity_embedding).squeeze(1)
-                x[2] = DecoderCategorical.get_classification_from_output(x[2], self._instrument_embedding).squeeze(1)
-                x[3] = DecoderCategorical.get_classification_from_output(x[3], self._program_embedding).squeeze(1)
-
             validation_samples.append(batch)
-
             if batch_idx > n_samples:
                 break
 
-        from eval.fid_evaluator import calculate_fid
         generated_fid_score = calculate_fid(validation_samples, generated_samples)
-        generated_control_fid_score = calculate_fid(validation_samples, generated_control_samples)
         print(f"Generated FID scores = {generated_fid_score}")
-        print(f"Control FID scores = {generated_control_fid_score}")
-        wandb.log({
-            'fid': generated_fid_score,
-            'controlled_generation_fid': generated_control_fid_score
-        }
-        )
 
     def sample_output(self, epoch):
         try:
@@ -659,28 +462,19 @@ class SimpleVae(BaseModel):
 
 if __name__ == "__main__":
     print(f"Training simple VAE")
-    _batch_size = 2048
+    _batch_size = 100
     _alpha = 15
     _z_dim = 20
     _model = SimpleVae(
         alpha=_alpha,
         z_dim=_z_dim,
         input_shape=(28, 28),
-        use_mnist_dms=True,
         sample_output_step=10,
         batch_size=_batch_size
     )
     print(f"Training --> {_model}")
 
     _max_epochs = 100
-    wandb.config = {
-        "learning_rate": _model.lr,
-        "z_dim": _z_dim,
-        "epochs": _max_epochs,
-        "batch_size": _batch_size,
-        "alpha": _model.alpha
-    }
-
     _optimizer = _model.configure_optimizers()
     _model.setup()
     for _epoch in elbo.elbo.ElboEpochIterator(range(1, _max_epochs + 1), _model):
@@ -695,4 +489,4 @@ if __name__ == "__main__":
             _model.eval()
             _model.compute_fid()
             _model.sample_output(_epoch)
-            _model.save(_epoch)
+            _model.save()
