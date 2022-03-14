@@ -10,8 +10,6 @@ import pytorch_lightning as pl
 import torch
 # noinspection PyPep8Naming
 import torch.nn.functional as F
-import tqdm
-from pytorch_fid import fid_score
 from pytorch_lightning.utilities.types import TRAIN_DATALOADERS, EVAL_DATALOADERS
 from torch import nn
 from torch.nn import functional as func
@@ -22,26 +20,6 @@ from torchvision import datasets
 def get_device():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     return device
-
-
-#
-# Based on https://machinelearningmastery.com/how-to-implement-the-frechet-inception-distance-fid-from-scratch/
-#
-def calculate_fid(validation_samples, generated_samples):
-    # calculate mean and covariance statistics
-    val = torch.cat(validation_samples, 1).reshape(-1, 28)
-    gen = torch.cat(generated_samples, 1).squeeze(0).T
-
-    mu1, sigma1 = torch.mean(val, dim=1), torch.cov(val)
-    mu2, sigma2 = torch.mean(gen, dim=1), torch.cov(gen)
-
-    mu1 = mu1.cpu().detach().numpy()
-    mu2 = mu2.cpu().detach().numpy()
-    sigma1 = sigma1.cpu().detach().numpy()
-    sigma2 = sigma2.cpu().detach().numpy()
-
-    fid = fid_score.calculate_frechet_distance(mu2, sigma2, mu1, sigma1)
-    return fid
 
 
 class MNISTTensorDataSet(Dataset):
@@ -424,29 +402,6 @@ class SimpleVae(BaseModel):
 
         plt.show()
 
-    def compute_fid(self):
-        generated_samples = []
-        n_samples = len(self._dms.val_dataloader().dataset)//1000
-        device = self._device
-        print("Generating samples...")
-
-        for batch_idx in tqdm.tqdm(range(0, n_samples)):
-            rand_z = torch.randn(self._z_dim)
-            rand_z = rand_z.to(device)
-            x_hat = self._decoder(rand_z)
-            generated_samples.append(x_hat)
-            if batch_idx > n_samples:
-                break
-
-        validation_samples = []
-        for batch_idx, batch in tqdm.tqdm(enumerate(self._dms.val_dataloader())):
-            validation_samples.append(batch)
-            if batch_idx > n_samples:
-                break
-
-        generated_fid_score = calculate_fid(validation_samples, generated_samples)
-        print(f"Generated FID scores = {generated_fid_score}")
-
     def sample_output(self, epoch):
         try:
             with torch.no_grad():
@@ -487,12 +442,7 @@ if __name__ == "__main__":
         _model.train()
         _model.fit(_epoch, _optimizer)
         _model.eval()
-        _model.test()
-        if _epoch == 1:
-            _model.compute_fid()
-
         if _epoch % 10 == 0:
             _model.eval()
-            _model.compute_fid()
             _model.sample_output(_epoch)
             _model.save()

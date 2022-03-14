@@ -7,4 +7,3 @@ torchvision
 wandb
 matplotlib
 elbo
-pytorch_fid
