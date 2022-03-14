@@ -386,7 +386,8 @@ class SimpleVae(BaseModel):
 
     def step(self, batch, batch_idx):
         x = batch
-        z, x_hat, mu, q_log_var = self(x)
+        parallel_self = nn.DataParallel(self)
+        z, x_hat, mu, q_log_var = parallel_self(x)
         loss = self.loss_function(x_hat, x, mu, q_log_var)
         return loss
 
@@ -426,29 +427,30 @@ class SimpleVae(BaseModel):
 
 def train_generator():
     print(f"Training simple VAE")
-    _batch_size = 10
-    _alpha = 1
-    _z_dim = 20
-    _model = SimpleVae(
-        alpha=_alpha,
-        z_dim=_z_dim,
+    batch_size = 10
+    alpha = 1
+    z_dim = 20
+    model = SimpleVae(
+        alpha=alpha,
+        z_dim=z_dim,
         input_shape=(28, 28),
         sample_output_step=1,
-        batch_size=_batch_size
+        batch_size=batch_size
     )
-    print(f"Training --> {_model}")
 
-    _max_epochs = 100
-    _optimizer = _model.configure_optimizers()
-    _model.setup()
-    for _epoch in elbo.elbo.ElboEpochIterator(range(0, _max_epochs), _model):
-        _model.train()
-        _model.fit(_epoch, _optimizer)
-        _model.eval()
-        if _epoch % 10 == 0:
-            _model.eval()
-            _model.sample_output(_epoch)
-            _model.save()
+    print(f"Training --> {model} on {get_device()}")
+
+    max_epochs = 100
+    optimizer = model.configure_optimizers()
+    model.setup()
+    for epoch in elbo.elbo.ElboEpochIterator(range(0, max_epochs), model):
+        model.train()
+        model.fit(epoch, optimizer)
+        model.eval()
+        if epoch % 10 == 0:
+            model.eval()
+            model.sample_output(epoch)
+            model.save()
 
 
 if __name__ == "__main__":
