@@ -10,6 +10,7 @@ import pytorch_lightning as pl
 import torch
 # noinspection PyPep8Naming
 import torch.nn.functional as F
+import tqdm
 from pytorch_lightning.utilities.types import TRAIN_DATALOADERS, EVAL_DATALOADERS
 from torch import nn
 from torch.nn import functional as func
@@ -186,6 +187,7 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
         raise NotImplementedError(f"Please implement sample_output()")
 
     def fit(self, epoch, optimizer):
+        print(f'Training mode epoch - {epoch}')
         device = get_device()
         self.to(device)
         self.train()
@@ -193,7 +195,7 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
         batch_kl_loss = 0.0
         batch_recon_loss = 0.0
 
-        for batch_idx, batch in enumerate(self._dms.train_dataloader()):
+        for batch_idx, batch in enumerate(tqdm.tqdm(self._dms.train_dataloader())):
             optimizer.zero_grad()
             loss, kl, recon_loss, = self.step(batch, batch_idx)
             loss.backward()
@@ -389,7 +391,7 @@ class SimpleVae(BaseModel):
         return loss
 
     @staticmethod
-    def plot_image_grid(samples):
+    def plot_image_grid(samples, tag):
         from mpl_toolkits.axes_grid1 import ImageGrid
         fig = plt.figure(figsize=(4., 4.))
         grid = ImageGrid(fig, 111,
@@ -400,9 +402,10 @@ class SimpleVae(BaseModel):
         for ax, im in zip(grid, samples):
             ax.imshow(im)
 
-        plt.show()
+        plt.savefig(f"sample_image_{tag}.png")
 
     def sample_output(self, epoch):
+        print(f"Sampling output {epoch}")
         try:
             with torch.no_grad():
                 device = get_device()
@@ -412,7 +415,7 @@ class SimpleVae(BaseModel):
                 output = self._decoder(rand_z)
                 samples = output.to("cpu").detach().numpy()
                 samples = samples.reshape((-1, 28, 28))
-                SimpleVae.plot_image_grid(samples)
+                SimpleVae.plot_image_grid(samples, tag=f"{epoch}")
         except Exception as _e:
             print(f"Hit exception during sample_output - {_e}")
 

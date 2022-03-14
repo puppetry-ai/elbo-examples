@@ -25,4 +25,5 @@ task_dir: .
 # checkpoints, generated samples, evaluation results etc. should be placed in this directory. 
 artifacts: artifacts
 
-price:
+# The max price for GPU Compute Node in dollars per hour
+price: 0.6100
