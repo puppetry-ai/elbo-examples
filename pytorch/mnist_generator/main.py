@@ -2,7 +2,7 @@ import os
 import os.path
 from typing import Any
 from typing import Optional
-
+import wandb
 import elbo.elbo
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,6 +16,8 @@ from torch import nn
 from torch.nn import functional as func
 from torch.utils.data import DataLoader, Dataset
 from torchvision import datasets
+
+wandb.init(project="elbo-mnist-generator", entity="elbo")
 
 
 def get_device():
@@ -123,14 +125,14 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
     def __init__(self, lr=1e-3,
                  data_dir=os.path.expanduser("data"),
                  output_dir=os.path.expanduser("artifacts"),
-                 num_gpus=1,
                  batch_size=3000,
                  sample_output_step=200,
-                 save_checkpoint_every=1000,
+                 save_checkpoint_every=10,
                  emit_tensorboard_scalars=True,
                  use_mnist_dms=False,
                  *args: Any, **kwargs: Any):
         super(BaseModel, self).__init__()
+        wandb.config.update({'learning_rate': lr})
         self._data_dir = data_dir
         self._output_dir = output_dir
         os.makedirs(self._output_dir, exist_ok=True)
@@ -138,11 +140,12 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
         self._use_mnist_dms = use_mnist_dms
         self._dms = None
         self._model_prefix = "base-model"
-        self._num_gpus = num_gpus
         self._sample_output_step = sample_output_step
         self._save_checkpoint_every = save_checkpoint_every
         self._emit_tensorboard_scalars = emit_tensorboard_scalars
         self._batch_size = batch_size
+        wandb.config.update({'batch_size': batch_size})
+        wandb.watch(self)
         self._data_mean = None
         self._data_std = None
 
@@ -209,6 +212,11 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
         kl_loss = batch_kl_loss / len(self._dms.train_dataloader().dataset)
         recon_loss = batch_recon_loss / len(self._dms.train_dataloader().dataset)
 
+        wandb.log({
+            'train_loss': loss,
+            'train_kl_loss': kl_loss,
+            'train_reconstruction_loss': recon_loss
+        })
         print(f'====> Train Loss = {loss} KL = {kl_loss} Recon = {recon_loss}  Epoch = {epoch}')
 
     def save(self):
@@ -216,6 +224,7 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
                                        f"{self._model_prefix}.checkpoint")
         print(f"Saving model to --> {model_save_path}")
         torch.save(self.state_dict(), model_save_path)
+        wandb.save(model_save_path)
 
     def test(self):
         self.eval()
@@ -238,6 +247,11 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
         loss = batch_test_loss / len(self._dms.test_dataloader().dataset)
         kl_loss = batch_kl_loss / len(self._dms.test_dataloader().dataset)
         recon_loss = batch_recon_loss / len(self._dms.test_dataloader().dataset)
+        wandb.log({
+            'test_loss': loss,
+            'test_kl_loss': kl_loss,
+            'test_reconstruction_loss': recon_loss
+        })
         print(f'====> Test Loss = {loss} KL = {kl_loss} Recon = {recon_loss}')
 
     @property
@@ -360,6 +374,8 @@ class SimpleVae(BaseModel):
                                 input_shape=input_shape)
         self._decoder = Decoder(z_dim, input_shape)
         self._alpha = alpha
+        wandb.config.update({'alpha': alpha})
+        wandb.config.update({'z_dim': z_dim})
         self._model_prefix = "VAE_MNIST"
         self._z_dim = z_dim
         self._device = get_device()
@@ -403,7 +419,10 @@ class SimpleVae(BaseModel):
         for ax, im in zip(grid, samples):
             ax.imshow(im)
 
-        plt.savefig(f"sample_image_{tag}.png")
+        image_file_name = f"sample_image_{tag}.png"
+        plt.savefig(image_file_name)
+        wandb.log({'sample': plt})
+        wandb.save(image_file_name)
 
     def sample_output(self, epoch):
         print(f"Sampling output {epoch}")

@@ -26,4 +26,4 @@ task_dir: .
 artifacts: artifacts
 
 # The max price for GPU Compute Node in dollars per hour
-price: 0.91
+#price: 0.91
