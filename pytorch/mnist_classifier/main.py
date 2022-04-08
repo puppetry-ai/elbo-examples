@@ -2,11 +2,9 @@ import torch
 import tqdm
 import torch.nn as nn
 import torch.nn.functional as F
+from elbo.elbo import ElboModel, ElboEpochIterator
 from torchvision import datasets, transforms
 import os
-
-import elbo.elbo
-from elbo.elbo import ElboModel
 
 
 def get_device():
@@ -104,7 +102,7 @@ if __name__ == '__main__':
     y_test_true = _test_data.test_labels.to(_device)
     y_train_true = _train_data.train_labels.to(_device)
 
-    for _epoch in elbo.elbo.ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=1):
+    for _epoch in ElboEpochIterator(range(0, _num_epochs), _model, save_state_interval=1):
         _loss, y_train_pred = train(_model, _train_data, _batch_size, _lr)
 
         model_output = test(_model, _test_data)
@@ -113,5 +111,6 @@ if __name__ == '__main__':
             y_train_pred = torch.argmax(torch.cat(y_train_pred), dim=1)
 
             test_accuracy = 100. * (torch.sum(y_test_pred == y_test_true).detach().cpu() / (_test_data.data.size(0)))
-            train_accuracy = 100. * (torch.sum(y_train_pred == y_train_true).detach().cpu() / (_train_data.data.size(0)))
+            train_accuracy = 100. * (
+                        torch.sum(y_train_pred == y_train_true).detach().cpu() / (_train_data.data.size(0)))
             print(f"Train accuracy - {train_accuracy} % Test accuracy - {test_accuracy} % Loss = {_loss}")

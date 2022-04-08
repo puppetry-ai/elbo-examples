@@ -5,3 +5,4 @@ pytorch_lightning
 tqdm
 torchvision
 wandb
+elbo
