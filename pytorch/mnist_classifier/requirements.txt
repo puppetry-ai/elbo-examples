@@ -5,4 +5,4 @@ pytorch_lightning
 tqdm
 torchvision
 wandb
-elbo
+elbo==0.0.940

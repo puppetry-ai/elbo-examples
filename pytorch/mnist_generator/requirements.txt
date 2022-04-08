@@ -6,4 +6,4 @@ tqdm
 torchvision
 wandb
 matplotlib
-elbo
+elbo==0.0.940
