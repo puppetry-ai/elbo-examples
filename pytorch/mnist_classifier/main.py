@@ -2,7 +2,7 @@ import torch
 import tqdm
 import torch.nn as nn
 import torch.nn.functional as F
-from elbo.elbo import ElboModel, ElboEpochIterator
+from elbo.model import ElboModel, ElboEpochIterator
 from torchvision import datasets, transforms
 import os
 
