@@ -1,0 +1,32 @@
+#
+# ELBO Sample Config File for Starting a Remove IntelliJ session
+#
+# All paths are relative to where the `elbo.yaml` file is placed
+
+name: "Start a remote Jetbrains Gateway session"
+
+# The GPU class to use - Economy, MidRange, HighEnd, All
+gpu_class: All
+
+# The script to run for setting up the environment. This can be installing packages on Ubuntu or
+setup: setup.sh
+
+# The PIP requirements file. ELBO will install the requirements specified in this file before launching the task.
+requirements: requirements.txt
+
+# The main entry point in the task. Once the script exits or terminates, the task is considered complete.
+run: lab.py
+
+# The task directory, relative to this file. This directory will be tar-balled and sent to ELBO task executor for
+# execution
+task_dir: .
+
+# Artifacts directory. This is the directory that will be copied over as output. All model related files -
+# checkpoints, generated samples, evaluation results etc. should be placed in this directory.
+artifacts: artifacts
+
+# The list of ports to open
+open_ports: [8080]
+
+# Keep the Node alive after task completion. This can be used for notebooks of SSH'ing into the task
+keep_alive: True
