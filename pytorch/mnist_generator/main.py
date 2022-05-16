@@ -20,9 +20,7 @@ from torch.nn import functional as func
 from torch.utils.data import DataLoader, Dataset
 from torchvision import datasets
 
-
 wandb.init(project="elbo-mnist-generator", entity="elbo")
-
 elbo_tracker = TaskTracker("ELBO MNIST number generative model training")
 
 
@@ -487,8 +485,8 @@ def train_generator():
             model.eval()
             model.sample_output(epoch)
             model.save()
+        elbo_tracker.upload_logs()
 
 
 if __name__ == "__main__":
     train_generator()
-    elbo_tracker.upload_logs()
