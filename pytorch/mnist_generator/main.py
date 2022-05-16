@@ -2,8 +2,10 @@ import os
 import os.path
 from typing import Any
 from typing import Optional
+
+from elbo.tracker.tracker import TaskTracker
+
 import wandb
-import elbo.elbo
 import matplotlib.pyplot as plt
 import numpy as np
 import pytorch_lightning as pl
@@ -11,13 +13,17 @@ import torch
 # noinspection PyPep8Naming
 import torch.nn.functional as F
 import tqdm
+from elbo.model import ElboEpochIterator, ElboModel
 from pytorch_lightning.utilities.types import TRAIN_DATALOADERS, EVAL_DATALOADERS
 from torch import nn
 from torch.nn import functional as func
 from torch.utils.data import DataLoader, Dataset
 from torchvision import datasets
 
+
 wandb.init(project="elbo-mnist-generator", entity="elbo")
+
+elbo_tracker = TaskTracker("ELBO MNIST number generative model training")
 
 
 def get_device():
@@ -56,18 +62,23 @@ class MNISTDataModule(pl.LightningDataModule):
         self._data_shape = data_shape
         self._num_workers = 0
         self._shuffle = shuffle
+        self._experiment_id = TaskTracker.get_random_human_friendly_experiment_id()
+        elbo_tracker.log_key_metric("Batch Size", self._batch_size)
 
     def setup(self, stage: Optional[str] = None) -> None:
         device = get_device()
+        elbo_tracker.log_message(f"Running on {device}")
         train_x = np.array([np.array(x) for x, _ in datasets.MNIST(self._data_dir, train=True, download=True)])
         train_x = train_x.astype(np.float32) / 255.0
         train_x = [torch.tensor(x).to(device) for x in train_x]
-        full_data_set = MNISTTensorDataSet(train_x)
+        elbo_tracker.log_key_metric("Train Dataset Count", len(train_x))
+        full_data_set = MNISTTensorDataSet(train_x)[0:4000]
 
         test_x = np.array([np.array(x) for x, _ in datasets.MNIST(self._data_dir, train=False, download=True)])
         test_x = test_x.astype(np.float32) / 255.0
         test_x = [torch.tensor(x).to(device) for x in test_x]
-        test_data_set = MNISTTensorDataSet(test_x)
+        elbo_tracker.log_key_metric("Test Dataset Count", len(test_x))
+        test_data_set = MNISTTensorDataSet(test_x)[0:2000]
 
         # Split train to train and val
         val_size = len(test_data_set)
@@ -108,7 +119,7 @@ class MNISTDataModule(pl.LightningDataModule):
         pass
 
 
-class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
+class BaseModel(ElboModel, torch.nn.Module):
     """
     Base model class that will be inherited by all model types
     """
@@ -133,6 +144,7 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
                  *args: Any, **kwargs: Any):
         super(BaseModel, self).__init__()
         wandb.config.update({'learning_rate': lr})
+        elbo_tracker.log_key_metric("Learning Rate", lr)
         self._data_dir = data_dir
         self._output_dir = output_dir
         os.makedirs(self._output_dir, exist_ok=True)
@@ -191,6 +203,7 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
 
     def fit(self, epoch, optimizer):
         print(f'Training mode epoch - {epoch}')
+        elbo_tracker.log_key_metric(f"Training Epoch", epoch)
         device = get_device()
         self.to(device)
         self.train()
@@ -217,7 +230,8 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
             'train_kl_loss': kl_loss,
             'train_reconstruction_loss': recon_loss
         })
-        print(f'====> Train Loss = {loss} KL = {kl_loss} Recon = {recon_loss}  Epoch = {epoch}')
+        message = f'Train Loss = {loss} KL = {kl_loss} Recon = {recon_loss}'
+        elbo_tracker.log_message(message)
 
     def save(self):
         model_save_path = os.path.join(self._output_dir,
@@ -252,7 +266,9 @@ class BaseModel(elbo.elbo.ElboModel, torch.nn.Module):
             'test_kl_loss': kl_loss,
             'test_reconstruction_loss': recon_loss
         })
-        print(f'====> Test Loss = {loss} KL = {kl_loss} Recon = {recon_loss}')
+
+        message = f'Test Loss = {loss} KL = {kl_loss} Recon = {recon_loss}'
+        elbo_tracker.log_message(message)
 
     @property
     def lr(self):
@@ -421,6 +437,7 @@ class SimpleVae(BaseModel):
 
         image_file_name = f"sample_image_{tag}.png"
         plt.savefig(image_file_name)
+        elbo_tracker.log_image("MNIST Generated Sample", image_file_name)
         wandb.log({'sample': plt})
         wandb.save(image_file_name)
 
@@ -459,14 +476,14 @@ def train_generator():
 
     print(f"Training --> {model} on {get_device()}")
 
-    max_epochs = 100
+    max_epochs = 10
     optimizer = model.configure_optimizers()
     model.setup()
-    for epoch in elbo.elbo.ElboEpochIterator(range(0, max_epochs), model):
+    for epoch in ElboEpochIterator(range(0, max_epochs), model):
         model.train()
         model.fit(epoch, optimizer)
         model.eval()
-        if epoch % 10 == 0:
+        if epoch % 2 == 0:
             model.eval()
             model.sample_output(epoch)
             model.save()
@@ -474,3 +491,4 @@ def train_generator():
 
 if __name__ == "__main__":
     train_generator()
+    elbo_tracker.upload_logs()
