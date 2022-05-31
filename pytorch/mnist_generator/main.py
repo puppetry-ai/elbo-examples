@@ -461,7 +461,7 @@ class SimpleVae(BaseModel):
 
 def train_generator():
     print(f"Training simple VAE")
-    batch_size = 10
+    batch_size = 1000
     alpha = 1
     z_dim = 20
     model = SimpleVae(
@@ -474,7 +474,7 @@ def train_generator():
 
     print(f"Training --> {model} on {get_device()}")
 
-    max_epochs = 10
+    max_epochs = 50
     optimizer = model.configure_optimizers()
     model.setup()
     for epoch in ElboEpochIterator(range(0, max_epochs), model):

@@ -1,3 +1,6 @@
+from elbo.tracker.tracker import TaskTracker
 
 if __name__ == "__main__":
-    print("Hello 💪")
+    tracker = TaskTracker("Hello World")
+    tracker.log_message("Hi there! 👋")
+    tracker.upload_logs()
