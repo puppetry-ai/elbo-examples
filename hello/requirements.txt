@@ -1,2 +1,2 @@
 numpy
-elbo
+elbo>=0.0.1042
