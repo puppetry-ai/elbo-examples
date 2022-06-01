@@ -13,6 +13,8 @@ import torch
 # noinspection PyPep8Naming
 import torch.nn.functional as F
 import tqdm
+from mpl_toolkits.axes_grid1 import ImageGrid
+
 from elbo.model import ElboEpochIterator, ElboModel
 from pytorch_lightning.utilities.types import TRAIN_DATALOADERS, EVAL_DATALOADERS
 from torch import nn
@@ -70,13 +72,13 @@ class MNISTDataModule(pl.LightningDataModule):
         train_x = train_x.astype(np.float32) / 255.0
         train_x = [torch.tensor(x).to(device) for x in train_x]
         elbo_tracker.log_key_metric("Train Dataset Count", len(train_x))
-        full_data_set = MNISTTensorDataSet(train_x)[0:4000]
+        full_data_set = MNISTTensorDataSet(train_x)
 
         test_x = np.array([np.array(x) for x, _ in datasets.MNIST(self._data_dir, train=False, download=True)])
         test_x = test_x.astype(np.float32) / 255.0
         test_x = [torch.tensor(x).to(device) for x in test_x]
         elbo_tracker.log_key_metric("Test Dataset Count", len(test_x))
-        test_data_set = MNISTTensorDataSet(test_x)[0:2000]
+        test_data_set = MNISTTensorDataSet(test_x)
 
         # Split train to train and val
         val_size = len(test_data_set)
@@ -416,14 +418,12 @@ class SimpleVae(BaseModel):
 
     def step(self, batch, batch_idx):
         x = batch
-        parallel_self = nn.DataParallel(self)
-        z, x_hat, mu, q_log_var = parallel_self(x)
+        z, x_hat, mu, q_log_var = self(x)
         loss = self.loss_function(x_hat, x, mu, q_log_var)
         return loss
 
     @staticmethod
     def plot_image_grid(samples, tag):
-        from mpl_toolkits.axes_grid1 import ImageGrid
         fig = plt.figure(figsize=(4., 4.))
         grid = ImageGrid(fig, 111,
                          nrows_ncols=(4, 4),
@@ -461,7 +461,7 @@ class SimpleVae(BaseModel):
 
 def train_generator():
     print(f"Training simple VAE")
-    batch_size = 1000
+    batch_size = 100
     alpha = 1
     z_dim = 20
     model = SimpleVae(
