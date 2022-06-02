@@ -8,3 +8,4 @@ wandb
 matplotlib
 elbo
 matplotlib
+elbo>=0.0.1042
